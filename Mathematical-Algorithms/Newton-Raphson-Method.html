@@ -1,0 +1,21 @@
+<script>
+function funcao(x)
+{
+	return x * x - 25;
+}
+function derivada(x)
+{
+	return 2 * x;
+}
+
+var x = parseInt(prompt("Digite o valor inicial do X: "));
+var p = parseFloat(prompt("Digite o nivel de precisão: "));
+var i = 1;
+while(funcao(x) > p)
+{
+	console.log("Na "+i+"º repetição o valor da função é: "+funcao(x));
+	i++;
+	x = x - (funcao(x) / derivada(x));
+}
+document.write(x);
+</script>
