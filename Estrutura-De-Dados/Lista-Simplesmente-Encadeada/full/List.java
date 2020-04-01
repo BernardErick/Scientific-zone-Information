@@ -284,7 +284,9 @@ public class List
     }
     public No clonar()
     {
-        return primeiro;
+        List listaAux = new List(this);
+        No listaCopia = listaAux.getPrimeiroNoLista();
+    	return listaCopia;
     }
     public void appendArray(int[] vetor)
     {
@@ -323,13 +325,54 @@ public class List
                     ultimo = novo;
                     aux2 = aux2.getProximo();
                 }
+                tamanho+=lista.tamanho();
                 break;
             }
             i++;
             aux = aux.getProximo();
         }
     }
-
+    public void esvaziar() 
+    {
+    	No aux = primeiro;
+    	while(aux!=null) 
+    	{
+    		aux.setProximo(null);
+    		aux=aux.getProximo();
+    	}
+    	primeiro=null;
+    	ultimo=null; 
+    }
+    public void inserirArrayPosicao(int[] vetor, int pos) 
+    {
+    	int i = 0;
+    	No aux = primeiro;
+    	while(i <= pos) 
+    	{
+    		if(i == pos) 
+    		{
+    			No aux2 = aux.getProximo();
+                for(int z = 0; z < vetor.length;z++)
+                {
+                    No novo = new No(vetor[z]);
+                    aux.setProximo(novo);
+                    aux = aux.getProximo();
+                    ultimo = aux;
+                }
+                while(aux2 != null)
+                {
+                    No novo = new No(aux2.getDado());
+                    ultimo.setProximo(novo);
+                    ultimo = novo;
+                    aux2 = aux2.getProximo();
+                }
+                tamanho+=vetor.length;
+                break;
+    		}
+    		aux = aux.getProximo();
+    		i++;
+    	}
+    }
     public int tamanho()
     {
         return tamanho;
