@@ -1,4 +1,3 @@
-
 public class Queue
 {
     private No primeiro;
@@ -63,10 +62,11 @@ public class Queue
             System.out.print(num + " "); //exibindo ele
             novaFila.enfileirar(num); //jogando ele na nova fila
         }
-        //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
+        //normalizando a fila
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
     }
     public void inserirPosicao(int valor, int pos)
     {
@@ -90,9 +90,11 @@ public class Queue
                 novaFila.enfileirar((int)desenfileirar()); //jogando ele na nova fila
             }
             //reatribuindo os ponteiros
-            this.primeiro = novaFila.getPrimeiroNoLista();
-            this.ultimo = novaFila.getUltimoNoLista();
-            tamanho = novaFila.tamanho();
+            tamanhoReal = novaFila.tamanho();
+            for(int i = 0; i < tamanhoReal;i++)
+            {
+                enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+            }
         }
 
     }
@@ -120,9 +122,11 @@ public class Queue
         }
 
         //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
         return valor;
 
     }
@@ -150,9 +154,11 @@ public class Queue
         }
 
         //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
         return valor;
 
     }
@@ -179,9 +185,11 @@ public class Queue
                 novaFila.enfileirar((int)desenfileirar()); //jogando o resto na nova fila
             }
             //reatribuindo os ponteiros
-            this.primeiro = novaFila.getPrimeiroNoLista();
-            this.ultimo = novaFila.getUltimoNoLista();
-            tamanho = novaFila.tamanho();
+            tamanhoReal = novaFila.tamanho();
+            for(int i = 0; i < tamanhoReal;i++)
+            {
+                enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+            }
 
         }
 
@@ -204,9 +212,11 @@ public class Queue
         }
 
         //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
 
 
     }
@@ -233,10 +243,11 @@ public class Queue
         }
 
         //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
-
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
         return cont;
     }
     public void inverter()
@@ -254,15 +265,18 @@ public class Queue
             aux2.enfileirar((int)desenfileirar());
             tamanhoReal--;
             //passando o a aux1 como o primeiro e resentando o loop
-            this.primeiro = aux1.getPrimeiroNoLista();
-            this.ultimo = aux1.getUltimoNoLista();
-            tamanho = aux1.tamanho();
-
+            tamanhoReal = aux1.tamanho();
+            for(int i = 0; i < tamanhoReal;i++)
+            {
+                enfileirar((int)aux1.desenfileirar()); //jogando ele na nova fila
+            }
         }
         //reatribuindo os ponteiros
-        this.primeiro = aux2.getPrimeiroNoLista();
-        this.ultimo = aux2.getUltimoNoLista();
-        tamanho = aux2.tamanho();
+        tamanhoReal = aux2.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)aux2.desenfileirar()); //jogando ele na nova fila
+        }
 
     }
 
@@ -281,9 +295,11 @@ public class Queue
             novaFila.enfileirar((int)desenfileirar()); //jogando ele na nova fila
         }
         //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
 
     }
     public int indice(int v)
@@ -312,9 +328,11 @@ public class Queue
         }
 
         //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
         if(achou)
             return cont;
         return -1;
@@ -338,6 +356,11 @@ public class Queue
             novaFila.enfileirar(num); //jogando ele na nova fila
             vetorAux[i] = num;
         }
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
         return vetorAux;
     }
     public boolean pertence(int v)
@@ -357,10 +380,11 @@ public class Queue
         }
 
         //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
-
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
         return achou;
     }
     public void ordenar()
@@ -369,7 +393,6 @@ public class Queue
         int num = (int)desenfileirar();
         novaFila.enfileirar(num);
         int tamanhoReal = tamanho;
-        int maiorElemento = num;
         int menorElemento = num;
         for(int i = 0;i < tamanhoReal;i++)
         {
@@ -381,14 +404,15 @@ public class Queue
             }
             else
             {
-                maiorElemento = num;
                 novaFila.enfileirar(num);
             }
         }
         //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
 
     }
     private void addInit(int valor)
@@ -404,9 +428,11 @@ public class Queue
             novaFila.enfileirar((int)desenfileirar()); //jogando ele na nova fila
         }
         //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
     }
     public void appendArray(int[] v)
     {
@@ -429,9 +455,11 @@ public class Queue
             novaFila.enfileirar((int)desenfileirar()); //jogando o resto na nova fila
         }
         //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
     }
     public void inserirFilaPosicao(Queue fila, int pos)
     {
@@ -455,9 +483,11 @@ public class Queue
             novaFila.enfileirar((int)desenfileirar()); //jogando o resto na nova fila
         }
         //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
     }
     public void inserirArrayPosicao(int[] v, int pos)
     {
@@ -480,9 +510,11 @@ public class Queue
             novaFila.enfileirar((int)desenfileirar()); //jogando o resto na nova fila
         }
         //reatribuindo os ponteiros
-        this.primeiro = novaFila.getPrimeiroNoLista();
-        this.ultimo = novaFila.getUltimoNoLista();
-        tamanho = novaFila.tamanho();
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+        }
     }
 
     public boolean vazio()
@@ -513,7 +545,6 @@ public class Queue
     {
         return ultimo;
     }
-
 
 }
 
