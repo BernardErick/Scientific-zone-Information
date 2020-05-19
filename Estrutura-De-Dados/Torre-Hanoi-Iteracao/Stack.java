@@ -44,9 +44,11 @@ public class Stack
             novaPilha.push(disco);
         }
         //reatribuindo os ponteiros
-        this.top = novaPilha.getTop();
-        tamanho = novaPilha.tamanho();
-
+        tamanhoReal = novaPilha.tamanho();
+        for(int i = 0; i<tamanhoReal;i++)
+        {
+            push((Disco) novaPilha.pop());
+        }
         //fazendo de novo
         Stack novaPilha2 = new Stack(); // nova pilha criada
         tamanhoReal = tamanho; //salvando a quantidade de repetições
@@ -56,8 +58,11 @@ public class Stack
             novaPilha2.push(disco);
         }
         //reatribuindo os ponteiros
-        this.top = novaPilha2.getTop();
-        tamanho = novaPilha2.tamanho();
+        tamanhoReal = novaPilha2.tamanho();
+        for(int i = 0; i<tamanhoReal;i++)
+        {
+            push((Disco) novaPilha2.pop());
+        }
     }
     public boolean isNull()
     {
