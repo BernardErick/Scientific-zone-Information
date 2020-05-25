@@ -25,7 +25,7 @@ public class Queue
     {
         appendArray(vetor);
     }
-    public void enfileirar(int valor)
+    public void enfileirar(int valor) //adiciona elementos(Fila)
     {
         No novo = new No(valor);
 
@@ -39,7 +39,7 @@ public class Queue
         tamanho++;
     }
 
-    public Object desenfileirar()
+    public Object desenfileirar() //remove elementos(Fila)
     {
         if (primeiro != null)
         {
@@ -52,7 +52,7 @@ public class Queue
         }
         return null;
     }
-    public void exibir()
+    public void exibir() //exibe os elementos
     {
         Queue novaFila = new Queue(); //nova fila criada
         int tamanhoReal = tamanho; //salvado a quantidade de repetições
@@ -65,7 +65,7 @@ public class Queue
         //normalizando a fila
         for(int i = 0; i < tamanhoReal;i++)
         {
-            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+            enfileirar((int)novaFila.desenfileirar()); //desenfileirando a novaFila na FilaOriginal
         }
     }
     public void inserirPosicao(int valor, int pos)
@@ -89,11 +89,11 @@ public class Queue
             {
                 novaFila.enfileirar((int)desenfileirar()); //jogando ele na nova fila
             }
-            //reatribuindo os ponteiros
+            //normalizando a fila
             tamanhoReal = novaFila.tamanho();
             for(int i = 0; i < tamanhoReal;i++)
             {
-                enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+                enfileirar((int)novaFila.desenfileirar()); //desenfileirando a novaFila na FilaOriginal
             }
         }
 
@@ -121,47 +121,16 @@ public class Queue
             novaFila.enfileirar((int)desenfileirar()); //jogando o resto na nova fila
         }
 
-        //reatribuindo os ponteiros
+        //normalizandoa fila
         tamanhoReal = novaFila.tamanho();
         for(int i = 0; i < tamanhoReal;i++)
         {
-            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+            enfileirar((int)novaFila.desenfileirar()); //desenfileirando a novaFila na FilaOriginal
         }
         return valor;
 
     }
-    private No valorPosicaoNo(int pos)
-    {
-        if(pos >= tamanho) //verificador
-        {
-            System.out.println("Posição invalida!");
-            return null;
-        }
 
-        Queue novaFila = new Queue(); //nova fila criada
-        for(int i = 0; i <= pos;i++)
-        {
-            int num = (int)desenfileirar();
-            novaFila.enfileirar(num); //jogando ele na nova fila
-        }
-
-        No valor = novaFila.getUltimoNoLista();
-        int tamanhoReal = tamanho; //salvado a quantidade de repetições restantes
-
-        for(int i = 0; i < tamanhoReal;i++)
-        {
-            novaFila.enfileirar((int)desenfileirar()); //jogando o resto na nova fila
-        }
-
-        //reatribuindo os ponteiros
-        tamanhoReal = novaFila.tamanho();
-        for(int i = 0; i < tamanhoReal;i++)
-        {
-            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
-        }
-        return valor;
-
-    }
     public void inserirAposPosicao(int valor, int pos)
     {
         if(pos >= tamanho) //verificador
@@ -171,7 +140,7 @@ public class Queue
         else
         {
             Queue novaFila = new Queue(); //nova fila criada
-            for(int i = 0; i <= pos;i++)
+            for(int i = 0; i <= pos;i++) //percorrendo ate a posicao do parametro
             {
                 int num = (int)desenfileirar();
                 novaFila.enfileirar(num); //jogando ele na nova fila
@@ -184,11 +153,11 @@ public class Queue
             {
                 novaFila.enfileirar((int)desenfileirar()); //jogando o resto na nova fila
             }
-            //reatribuindo os ponteiros
+            //normalizando a fila
             tamanhoReal = novaFila.tamanho();
             for(int i = 0; i < tamanhoReal;i++)
             {
-                enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+                enfileirar((int)novaFila.desenfileirar()); //desenfileirando a novaFila na FilaOriginal
             }
 
         }
@@ -211,21 +180,49 @@ public class Queue
             novaFila.enfileirar((int)fila.desenfileirar()); //jogando ele na nova fila
         }
 
-        //reatribuindo os ponteiros
+        //normalizando a fila
         tamanhoReal = novaFila.tamanho();
         for(int i = 0; i < tamanhoReal;i++)
         {
-            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+            enfileirar((int)novaFila.desenfileirar()); //desenfileirando a novaFila na FilaOriginal
         }
 
 
     }
 
-    public No clonar()
+    public No clonar() //Kage bunshin no Jutsu
     {
-        Queue listaAux = new Queue(this);
-        No listaCopia = listaAux.getPrimeiroNoLista();
-        return listaCopia;
+        //algumas observações sobre esse metodo
+        //diferente do primeiro que podia manipular os ponteiros
+        //esse foi feito usando o desenfileiramento e enfileiramento da pilha principal
+
+        Queue novaFila = new Queue(); //nova fila criada
+
+        //aqui vai ser inicializado logo por conta do No exigir 1 paramentro
+        int n = (int)desenfileirar();
+        No clone = new No(n);
+        novaFila.enfileirar(n);
+        //aqui foi criado uma variavel aux pra ajudar a preencher o clone sem que o clone perca a referencia do inicio
+        No aux = clone;
+        int tamanhoReal = tamanho; //salvado a quantidade de repetições
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            int num = (int)desenfileirar(); //Uso de casting para armazenar o número
+            //criando um novo No temporario para ser adicionado ao clone
+            No novo = new No(num);
+            aux.setProximo(novo);
+            aux = aux.getProximo();
+            //e depois adicionando na novaFila normalmente
+            novaFila.enfileirar(num); //jogando ele na nova fila
+        }
+        //normalizando a fila
+        tamanhoReal = novaFila.tamanho();
+        for(int i = 0; i < tamanhoReal;i++)
+        {
+            enfileirar((int)novaFila.desenfileirar()); //desenfileirando a novaFila na FilaOriginal
+        }
+        //retornando um No com uma copia de todos os elementos
+        return clone;
     }
     public int contar(int valor)
     {
@@ -242,16 +239,55 @@ public class Queue
             novaFila.enfileirar(num); //jogando ele na nova fila
         }
 
-        //reatribuindo os ponteiros
+        //normalizando a fila
         tamanhoReal = novaFila.tamanho();
         for(int i = 0; i < tamanhoReal;i++)
         {
-            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+            enfileirar((int)novaFila.desenfileirar()); //desenfileirando a novaFila na FilaOriginal
         }
         return cont;
     }
     public void inverter()
     {
+        /*
+        * uma breve explicação da mecanica do metodo:
+        *
+        * 1 passo) Inicialmente o que existe
+        * lista[1 , 2 , 3 , 4]
+        * aux1 []
+        * aux 2 []
+        *
+        * 2 passo) Desenfileirar os elementos da Lista para a aux 1 deixando somente o ultimo elemento
+        * Lista[X , X , X , 4]
+        * aux1[1 , 2 , 3]
+        * aux[]
+        *
+        * 3 passo) Desenfileirar o ultimo Elemento da Lista na aux 2
+        * Lista[X , X , X , X]
+        * aux1[1, 2 , 3 ]
+        * aux2[4]
+        *
+        * 4 passo) Atribuir a aux1 sendo a nova Lista e criando uma nova aux1
+        * Lista[1, 2 , 3]
+        * aux1 []
+        * aux2[4 ]
+        *
+        * 5 passo) Repetir o mesmo processo ate que a aux2 tenha sido preenchida com todos elementos da Lista invertidos
+        * Lista[X, X , 3]
+        * aux1[1 , 2]
+        * aux2[4 ]
+        *
+        * ...
+        *
+        * 6 passo) Depois que a aux2 estiver cheia, desemfileirar o aux2 de volta na Lista Original que estava nula
+        * Lista[]
+        * aux1[]
+        * aux2[4 , 3 , 2 , 1]
+        *
+        * por fim)
+        * Lista[4 , 3 , 2 , 1]
+        *
+        * */
         int tamAux = tamanho;
         int tamanhoReal = tamanho; //salvado a quantidade de repetições
         Queue aux2 = new Queue();
@@ -268,14 +304,14 @@ public class Queue
             tamanhoReal = aux1.tamanho();
             for(int i = 0; i < tamanhoReal;i++)
             {
-                enfileirar((int)aux1.desenfileirar()); //jogando ele na nova fila
+                enfileirar((int)aux1.desenfileirar()); //desenfileirando a aux1 na FilaOriginal
             }
         }
-        //reatribuindo os ponteiros
+        //normalizando a fila
         tamanhoReal = aux2.tamanho();
         for(int i = 0; i < tamanhoReal;i++)
         {
-            enfileirar((int)aux2.desenfileirar()); //jogando ele na nova fila
+            enfileirar((int)aux2.desenfileirar()); //desenfileirando a aux2 na FilaOriginal
         }
 
     }
@@ -294,11 +330,11 @@ public class Queue
         {
             novaFila.enfileirar((int)desenfileirar()); //jogando ele na nova fila
         }
-        //reatribuindo os ponteiros
+        //normalizando a fila
         tamanhoReal = novaFila.tamanho();
         for(int i = 0; i < tamanhoReal;i++)
         {
-            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+            enfileirar((int)novaFila.desenfileirar()); //desenfileirando a novaFila na FilaOriginal
         }
 
     }
@@ -327,11 +363,11 @@ public class Queue
             novaFila.enfileirar((int)desenfileirar()); //jogando ele na nova fila
         }
 
-        //reatribuindo os ponteiros
+        //normalizando a fila
         tamanhoReal = novaFila.tamanho();
         for(int i = 0; i < tamanhoReal;i++)
         {
-            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+            enfileirar((int)novaFila.desenfileirar()); //desenfileirando a novaFila na FilaOriginal
         }
         if(achou)
             return cont;
@@ -342,7 +378,7 @@ public class Queue
         int tamanhoReal = tamanho; //salvado a quantidade de repetições
         for(int i = 0; i < tamanhoReal;i++)
         {
-            desenfileirar(); //Uso de casting para armazenar o número
+            desenfileirar();
         }
     }
     public int[] array()
@@ -359,7 +395,7 @@ public class Queue
         tamanhoReal = novaFila.tamanho();
         for(int i = 0; i < tamanhoReal;i++)
         {
-            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+            enfileirar((int)novaFila.desenfileirar()); //desenfileirando a novaFila na FilaOriginal
         }
         return vetorAux;
     }
@@ -379,41 +415,31 @@ public class Queue
             novaFila.enfileirar(num); //jogando ele na nova fila
         }
 
-        //reatribuindo os ponteiros
+        //normalizando
         tamanhoReal = novaFila.tamanho();
         for(int i = 0; i < tamanhoReal;i++)
         {
-            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+            enfileirar((int)novaFila.desenfileirar()); //desenfileirando a novaFila na FilaOriginal
         }
         return achou;
     }
     public void ordenar()
     {
-        Queue novaFila = new Queue();
-        int num = (int)desenfileirar();
-        novaFila.enfileirar(num);
+        List lista = new List();
         int tamanhoReal = tamanho;
-        int menorElemento = num;
-        for(int i = 0;i < tamanhoReal;i++)
+        for(int i = 0; i<tamanhoReal;i++)
         {
-            num = (int) desenfileirar();
-            if(num < menorElemento)
-            {
-                menorElemento = num;
-                novaFila.addInit(num);
-            }
-            else
-            {
-                novaFila.enfileirar(num);
-            }
+            lista.prepend((int)desenfileirar());
         }
-        //reatribuindo os ponteiros
-        tamanhoReal = novaFila.tamanho();
-        for(int i = 0; i < tamanhoReal;i++)
+        lista.ordenar();
+        int listaReal = lista.tamanho();
+        for(int z = 0; z<tamanhoReal;z++)
         {
-            enfileirar((int)novaFila.desenfileirar()); //jogando ele na nova fila
+            int n = lista.removeEnd();
+            System.out.println("removendo numero:"+n);
+            enfileirar(n);
         }
-
+        inverter();
     }
     private void addInit(int valor)
     {
@@ -546,6 +572,5 @@ public class Queue
         return ultimo;
     }
 
+
 }
-
-
