@@ -18,6 +18,7 @@ public class BinaryTree
         {
             add(raiz,valor);
         }
+        tamanho++;
     }
     public void add(No raiz,int valor)//Inserção
     {
@@ -43,7 +44,6 @@ public class BinaryTree
                 add(raiz.direita,valor);
             }
         }
-        tamanho++;
     }
     //--------------------------------------------------------
     public boolean search(int valor)
@@ -165,6 +165,7 @@ public class BinaryTree
         if (raiz != null) {
             remover(valor, raiz, null);
         }
+        tamanho--;
     }
 
     public void remover(int valor, No raiz, No pai) {
