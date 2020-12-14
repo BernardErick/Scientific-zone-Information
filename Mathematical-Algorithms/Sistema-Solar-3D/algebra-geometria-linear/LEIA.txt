@@ -1,0 +1,3 @@
+Para fins de teste, basta usar no console o comando
+=> ligado = false
+que ele pausa o sistema solar para analisar.
